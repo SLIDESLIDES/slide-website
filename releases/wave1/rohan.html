@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rohan Rai</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+    .export-page {
+      position: relative;
+      width: 1440px;
+      min-width: 1440px;
+      min-height: 1600px;
+      margin: 0 auto;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 6px;
+      padding: 20px;
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px; right: 14px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #6b7280;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+    .modal-img {
+      width: 100%;
+      max-height: 600px;
+      object-fit: contain;
+      border-radius: 4px;
+      display: block;
+    }
+    .modal-label {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #374151;
+      margin: 10px 0 0 0;
+    }
+
+    /* Clickable elements */
+    .clickable {
+      cursor: pointer;
+    }
+    .clickable:hover {
+      opacity: 0.75;
+    }
+  </style>
+</head>
+<body>
+  <div class="export-page">
+
+    <!-- ─── PIECE 1 TITLE ─── -->
+    <h2 style="position:absolute;left:13.7361px;top:22.9514px;font-size:60px;color:#111827;font-family:roman;font-weight:700;font-style:italic;text-decoration:none;margin:0;white-space:pre-wrap">Compression/SLIDE SLIDE SLIDE SLIDE SLIDE/Digital Print (Piece 1)</h2>
+
+    <!-- ─── PIECE 2 TITLE ─── -->
+    <h2 style="position:absolute;left:459.024px;top:814.087px;font-size:60px;color:#111827;font-family:Roman;font-weight:700;font-style:italic;text-decoration:none;margin:0;white-space:pre-wrap">-- Print (Piece 2) --</h2>
+
+    <!-- ─── AUTHOR NAME ─── -->
+    <h2 style="position:absolute;left:19.7292px;top:1526.55px;font-size:40px;color:#111827;font-family:Roman;font-weight:700;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap;display:flex;gap:0.28em;"><span id="nameFirst">ROHAN</span><span id="nameLast">RAI</span></h2>
+
+    <!-- ─── PT. LABELS (clickable) ─── -->
+    <!-- pt.1 — add your image path to the onclick: openModal('pt1') and set the src below in the images object -->
+    <p class="clickable" onclick="openModal('pt1')" style="position:absolute;left:168.965px;top:350.972px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 1</p>
+
+    <!-- pt.2 — add your image path below in the images object -->
+    <p class="clickable" onclick="openModal('pt2')" style="position:absolute;left:611.361px;top:349.396px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 2</p>
+
+    <!-- pt.3 — add your image path below in the images object -->
+    <p class="clickable" onclick="openModal('pt3')" style="position:absolute;left:1204.75px;top:352.757px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 3</p>
+
+    <!-- ─── NOISE OVERLAY (covers full piece 1 area) ─── -->
+    <div style="position:absolute;left:0;top:0;width:100%;height:800px;pointer-events:none;overflow:hidden;">
+      <canvas id="noiseCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;"></canvas>
+    </div>
+
+    <!-- ─── PIECE 2 NUMBERS (clickable) ─── -->
+    <!-- number 1 — add your image path below in the images object -->
+    <p class="clickable" onclick="openModal('n1')" style="position:absolute;left:264.323px;top:976.111px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">1</p>
+
+    <!-- number 2 — add your image path below in the images object -->
+    <p class="clickable" onclick="openModal('n2')" style="position:absolute;left:363.618px;top:1170.41px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">2</p>
+
+    <!-- number 3 — add your image path below in the images object -->
+    <p class="clickable" onclick="openModal('n3')" style="position:absolute;left:346.326px;top:1395.11px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">3</p>
+
+    <!-- ─── COLORED SQUARES (clickable) ─── -->
+    <!-- square 1 (blue-gray) — add your image path below in the images object -->
+    <div class="clickable" onclick="openModal('sq1')" style="position:absolute;left:942.695px;top:982.49px;width:100px;height:100px;background:#545e89;border-radius:0"></div>
+
+    <!-- square 2 (brown) — add your image path below in the images object -->
+    <div class="clickable" onclick="openModal('sq2')" style="position:absolute;left:868.813px;top:1223.65px;width:100px;height:100px;background:#5a4546;border-radius:0"></div>
+
+    <!-- square 3 (gray) — add your image path below in the images object -->
+    <div class="clickable" onclick="openModal('sq3')" style="position:absolute;left:1234.9px;top:1356.66px;width:100px;height:100px;background:#525152;border-radius:0"></div>
+
+  </div>
+
+  <!-- ─── MODAL ─── -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <p class="modal-label" id="modalLabel"></p>
+      <img class="modal-img" id="modalImg" src="" alt="" />
+    </div>
+  </div>
+
+  <script>
+    // ─────────────────────────────────────────────
+    // ADD YOUR IMAGE PATHS HERE
+    // Use relative paths from this file, e.g.:
+    //   '../../images/release-1/rohan-piece-1.jpg'
+    // Or absolute URLs, e.g.:
+    //   'https://your-site.com/image.jpg'
+    // ─────────────────────────────────────────────
+    const images = {
+      pt1: '',   // image for pt. 1
+      pt2: '',   // image for pt. 2
+      pt3: '',   // image for pt. 3
+      n1:  '',   // image for number 1
+      n2:  '',   // image for number 2
+      n3:  '',   // image for number 3
+      sq1: '',   // image for blue-gray square
+      sq2: '',   // image for brown square
+      sq3: '',   // image for gray square
+    };
+    // ─────────────────────────────────────────────
+
+    const labels = {
+      pt1:'pt. 1', pt2:'pt. 2', pt3:'pt. 3',
+      n1:'1', n2:'2', n3:'3',
+      sq1:'Square 1', sq2:'Square 2', sq3:'Square 3'
+    };
+
+    function openModal(slot) {
+      const src = images[slot];
+      if (!src) return;
+      document.getElementById('modalImg').src = src;
+      document.getElementById('modalLabel').textContent = labels[slot] || '';
+      document.getElementById('modalOverlay').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').classList.remove('active');
+      document.getElementById('modalImg').src = '';
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // ─── Noise canvas ───
+    const canvas = document.getElementById('noiseCanvas');
+    const ctx = canvas.getContext('2d');
+    let dots = [];
+
+    function makeDot() {
+      return {
+        x: Math.random() * (canvas.width || 1200),
+        y: Math.random() * (canvas.height || 120),
+        w: Math.random() < 0.3 ? Math.floor(Math.random() * 5 + 3) : Math.floor(Math.random() * 2 + 1),
+        h: Math.random() < 0.2 ? Math.floor(Math.random() * 3 + 1) : 1,
+        alpha: Math.random() * 0.7 + 0.3,
+        life: Math.random() * 20,
+        maxLife: Math.floor(Math.random() * 14 + 4),
+        gray: Math.floor(Math.random() * 90 + 30)
+      };
+    }
+
+    function initNoise() {
+      const box = canvas.parentElement;
+      canvas.width = box.offsetWidth || 1440;
+      canvas.height = box.offsetHeight || 800;
+      dots = [];
+      // Spread across full half-page but keep density sparse so text stays readable
+      const count = Math.floor((canvas.width * canvas.height) / 600);
+      for (let i = 0; i < count; i++) dots.push(makeDot());
+    }
+
+    function drawNoise() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        d.life++;
+        if (d.life > d.maxLife) { dots[i] = makeDot(); continue; }
+        const fade = Math.sin((d.life / d.maxLife) * Math.PI);
+        ctx.globalAlpha = d.alpha * fade;
+        ctx.fillStyle = `rgb(${d.gray},${d.gray},${d.gray})`;
+        ctx.fillRect(Math.round(d.x), Math.round(d.y), d.w, d.h);
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(drawNoise);
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(() => { initNoise(); drawNoise(); }, 100);
+    });
+
+    // ─── Name glitch ───
+    const nameFirst = document.getElementById('nameFirst');
+    const nameLast = document.getElementById('nameLast');
+
+    function glitchName() {
+      const roll = Math.random();
+      if (roll < 0.4) {
+        nameFirst.style.visibility = 'hidden';
+        nameLast.style.visibility = 'visible';
+      } else if (roll < 0.8) {
+        nameFirst.style.visibility = 'visible';
+        nameLast.style.visibility = 'hidden';
+      } else {
+        nameFirst.style.visibility = 'hidden';
+        nameLast.style.visibility = 'hidden';
+      }
+      const holdTime = Math.random() * 2000 + 1000;
+      setTimeout(() => {
+        nameFirst.style.visibility = 'visible';
+        nameLast.style.visibility = 'visible';
+        const nextGlitch = Math.random() * 3500 + 1500;
+        setTimeout(glitchName, nextGlitch);
+      }, holdTime);
+    }
+
+    setTimeout(glitchName, 2000);
+  </script>
+</body>
+</html>
