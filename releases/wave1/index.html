@@ -133,9 +133,16 @@ body {
 <body>
     
 <!-- Top image -->
-<img src="../../images/wave1/rohan/galio.png" style="position:fixed;top:40px;left:400px;width:250px;height:250px;object-fit:contain;">
+<a href="../../releases/wave1/rohan.html" target="_blank">
+    <img src="../../images/wave1/rohan/galio.png"
+         style="position:fixed;top:40px;left:400px;width:250px;height:250px;object-fit:contain;">
+</a>
 <!-- Bottom image -->
-<img src="../../images/wave1/thomas/flag.png" style="position:fixed;bottom:30px;left:270px;width:500px;height:300px;object-fit:contain;">
+<a href="../../releases/wave1/thomas.html" target="_blank">
+    <img src="../../images/wave1/thomas/flag.png"
+         style="position:fixed;bottom:30px;left:270px;width:500px;height:300px;object-fit:contain;">
+</a>
+    
 <p style="position:fixed;bottom:10px;left:50%;transform:translateX(-50%);font-family:Arial;font-size:10px;color:rgb(55,65,81);margin:0;white-space:nowrap;">® 2026 SLIDE</p>
 <div class="track" id="track"></div>
 
@@ -199,11 +206,16 @@ function createSection() {
     const section = document.createElement("div");
     section.className = "section";
 
+    const link = document.createElement("a");
+    link.href = "../../releases/wave1/christian.html";
+    link.target = "_blank";
+    
     const img = document.createElement("img");
     img.src = IMAGE_PATH;
     img.className = "image";
-
-    section.appendChild(img);
+    
+    link.appendChild(img);
+    section.appendChild(link);
 
     const connector = document.createElement("div");
     connector.className = "connector";
