@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rohan Rai</title>
+  <title>print.</title>
   <style>
     * { box-sizing: border-box; }
     html, body {
@@ -81,33 +81,36 @@
 <body>
   <div class="export-page">
 
-    <!-- ─── PIECE 1 TITLE ─── -->
-    <h2 style="position:absolute;left:13.7361px;top:22.9514px;font-size:60px;color:#111827;font-family:roman;font-weight:700;font-style:italic;text-decoration:none;margin:0;white-space:pre-wrap">Compression/SLIDE SLIDE SLIDE SLIDE SLIDE/Digital Print (Piece 1)</h2>
 
-    <!-- ─── PIECE 2 TITLE ─── -->
-    <h2 style="position:absolute;left:459.024px;top:814.087px;font-size:60px;color:#111827;font-family:Roman;font-weight:700;font-style:italic;text-decoration:none;margin:0;white-space:pre-wrap">-- Print (Piece 2) --</h2>
-
-    <!-- ─── AUTHOR NAME ─── -->
-    <h2 style="position:absolute;left:19.7292px;top:1526.55px;font-size:40px;color:#111827;font-family:Roman;font-weight:700;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap;display:flex;gap:0.28em;"><span id="nameFirst">ROHAN</span><span id="nameLast">RAI</span></h2>
+    <p style="position:absolute;left:649.233px;top:1560px;font-size:10px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">© 2026 Rohan Rai</p>
 
     <!-- ─── PT. LABELS (clickable) ─── -->
     <!-- pt.1 — add your image path to the onclick: openModal('pt1') and set the src below in the images object -->
-    <p class="clickable" onclick="openModal('pt1')" style="position:absolute;left:168.965px;top:350.972px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 1</p>
+    <p class="clickable" onclick="openModal('pt1')" style="position:absolute;left:168.965px;top:350.972px;font-size:40px;color:#374151;font-family:system-ui;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 1</p>
 
     <!-- pt.2 — add your image path below in the images object -->
-    <p class="clickable" onclick="openModal('pt2')" style="position:absolute;left:611.361px;top:349.396px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 2</p>
+    <p class="clickable" onclick="openModal('pt2')" style="position:absolute;left:611.361px;top:349.396px;font-size:40px;color:#374151;font-family:system-ui;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 2</p>
 
     <!-- pt.3 — add your image path below in the images object -->
-    <p class="clickable" onclick="openModal('pt3')" style="position:absolute;left:1204.75px;top:352.757px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 3</p>
+    <p class="clickable" onclick="openModal('pt3')" style="position:absolute;left:1204.75px;top:352.757px;font-size:40px;color:#374151;font-family:system-ui;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">pt. 3</p>
 
-    <!-- ─── NOISE OVERLAY (covers full piece 1 area) ─── -->
-    <div style="position:absolute;left:0;top:0;width:100%;height:800px;pointer-events:none;overflow:hidden;">
-      <canvas id="noiseCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;"></canvas>
+    <!-- FULL SCREEN NOISE -->
+    <div id="noiseOverlay" style="
+      position:fixed;
+      top:0;
+      left:0;
+      width:100vw;
+      height:100vh;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:9999;
+    ">
+      <canvas id="noiseCanvas" style="
+        width:100%;
+        height:100%;
+        display:block;
+      "></canvas>
     </div>
-
-    <!-- ─── PIECE 2 NUMBERS (clickable) ─── -->
-    <!-- number 1 — add your image path below in the images object -->
-    <p class="clickable" onclick="openModal('n1')" style="position:absolute;left:264.323px;top:976.111px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">1</p>
 
     <!-- number 2 — add your image path below in the images object -->
     <p class="clickable" onclick="openModal('n2')" style="position:absolute;left:363.618px;top:1170.41px;font-size:40px;color:#374151;font-family:Arial;font-weight:400;font-style:normal;text-decoration:none;margin:0;white-space:pre-wrap">2</p>
@@ -182,77 +185,58 @@
 
     // ─── Noise canvas ───
     const canvas = document.getElementById('noiseCanvas');
-    const ctx = canvas.getContext('2d');
-    let dots = [];
+const ctx = canvas.getContext('2d');
 
-    function makeDot() {
-      return {
-        x: Math.random() * (canvas.width || 1200),
-        y: Math.random() * (canvas.height || 120),
-        w: Math.random() < 0.3 ? Math.floor(Math.random() * 5 + 3) : Math.floor(Math.random() * 2 + 1),
-        h: Math.random() < 0.2 ? Math.floor(Math.random() * 3 + 1) : 1,
-        alpha: Math.random() * 0.7 + 0.3,
-        life: Math.random() * 20,
-        maxLife: Math.floor(Math.random() * 14 + 4),
-        gray: Math.floor(Math.random() * 90 + 30)
-      };
+function resizeNoise() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeNoise);
+resizeNoise();
+
+function drawNoise() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Static particles
+  for (let i = 0; i < 4000; i++) {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+
+    const w = Math.random() < 0.2
+      ? Math.random() * 15 + 5
+      : Math.random() * 3 + 1;
+
+    const h = Math.random() < 0.1
+      ? Math.random() * 4 + 1
+      : 1;
+
+    const g = Math.floor(Math.random() * 255);
+
+    ctx.fillStyle = `rgba(${g},${g},${g},${Math.random() * 0.7})`;
+    ctx.fillRect(x, y, w, h);
+  }
+
+  // Random horizontal glitches
+  if (Math.random() < 0.15) {
+    ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.3})`;
+
+    ctx.fillRect(
+      0,
+      Math.random() * canvas.height,
+      canvas.width,
+      Math.random() * 40 + 5
+    );
     }
 
-    function initNoise() {
-      const box = canvas.parentElement;
-      canvas.width = box.offsetWidth || 1440;
-      canvas.height = box.offsetHeight || 800;
-      dots = [];
-      // Spread across full half-page but keep density sparse so text stays readable
-      const count = Math.floor((canvas.width * canvas.height) / 600);
-      for (let i = 0; i < count; i++) dots.push(makeDot());
+    // Random white flashes
+    if (Math.random() < 0.02) {
+        ctx.fillStyle = `rgba(255,255,255,0.15)`;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-
-    function drawNoise() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < dots.length; i++) {
-        const d = dots[i];
-        d.life++;
-        if (d.life > d.maxLife) { dots[i] = makeDot(); continue; }
-        const fade = Math.sin((d.life / d.maxLife) * Math.PI);
-        ctx.globalAlpha = d.alpha * fade;
-        ctx.fillStyle = `rgb(${d.gray},${d.gray},${d.gray})`;
-        ctx.fillRect(Math.round(d.x), Math.round(d.y), d.w, d.h);
-      }
-      ctx.globalAlpha = 1;
-      requestAnimationFrame(drawNoise);
+    requestAnimationFrame(drawNoise);
     }
-
-    window.addEventListener('load', () => {
-      setTimeout(() => { initNoise(); drawNoise(); }, 100);
-    });
-
-    // ─── Name glitch ───
-    const nameFirst = document.getElementById('nameFirst');
-    const nameLast = document.getElementById('nameLast');
-
-    function glitchName() {
-      const roll = Math.random();
-      if (roll < 0.4) {
-        nameFirst.style.visibility = 'hidden';
-        nameLast.style.visibility = 'visible';
-      } else if (roll < 0.8) {
-        nameFirst.style.visibility = 'visible';
-        nameLast.style.visibility = 'hidden';
-      } else {
-        nameFirst.style.visibility = 'hidden';
-        nameLast.style.visibility = 'hidden';
-      }
-      const holdTime = Math.random() * 2000 + 1000;
-      setTimeout(() => {
-        nameFirst.style.visibility = 'visible';
-        nameLast.style.visibility = 'visible';
-        const nextGlitch = Math.random() * 3500 + 1500;
-        setTimeout(glitchName, nextGlitch);
-      }, holdTime);
-    }
-
-    setTimeout(glitchName, 2000);
+    drawNoise();
   </script>
 </body>
 </html>
