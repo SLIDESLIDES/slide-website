@@ -186,10 +186,26 @@ function randomX() {
 ========================= */
 
 function createPhrase() {
+    const text = randomPhrase();
+
+    if (text === "CLICK HERE") {
+        const a = document.createElement("a");
+        a.className = "phrase";
+        a.textContent = text;
+        a.href = "../../releases/wave1/slideradio111.html";
+        a.target = "_blank";
+        a.style.left = randomX() + "%";
+        a.style.top = randomLineY() + "px";
+        a.style.textDecoration = "none";
+        a.style.color = "black";
+        a.style.cursor = "pointer";
+        return a;
+    }
+
     const p = document.createElement("div");
     p.className = "phrase";
 
-    p.textContent = randomPhrase();
+    p.textContent = text;
 
     p.style.left = randomX() + "%";
     p.style.top = randomLineY() + "px";
